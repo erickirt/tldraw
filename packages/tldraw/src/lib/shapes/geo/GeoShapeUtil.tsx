@@ -2,6 +2,7 @@
 import {
 	BaseBoxShapeUtil,
 	Box,
+	EMPTY_ARRAY,
 	Editor,
 	Group2d,
 	HTMLContainer,
@@ -20,11 +21,11 @@ import {
 	geoShapeProps,
 	getDefaultColorTheme,
 	getFontsFromRichText,
+	isEqual,
 	lerp,
 	toRichText,
 	useValue,
 } from '@tldraw/editor'
-import isEqual from 'lodash.isequal'
 import {
 	isEmptyRichText,
 	renderHtmlFromRichTextForMeasurement,
@@ -167,6 +168,9 @@ export class GeoShapeUtil extends BaseBoxShapeUtil<TLGeoShape> {
 	}
 
 	override getFontFaces(shape: TLGeoShape): TLFontFace[] {
+		if (isEmptyRichText(shape.props.richText)) {
+			return EMPTY_ARRAY
+		}
 		return getFontsFromRichText(this.editor, shape.props.richText, {
 			family: `tldraw_${shape.props.font}`,
 			weight: 'normal',

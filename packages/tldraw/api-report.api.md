@@ -185,7 +185,7 @@ export class ArrowBindingUtil extends BindingUtil<TLArrowBinding> {
     // (undocumented)
     onAfterChangeFromShape({ shapeAfter, }: BindingOnShapeChangeOptions<TLArrowBinding>): void;
     // (undocumented)
-    onAfterChangeToShape({ binding }: BindingOnShapeChangeOptions<TLArrowBinding>): void;
+    onAfterChangeToShape({ binding, shapeBefore, shapeAfter, reason, }: BindingOnShapeChangeOptions<TLArrowBinding>): void;
     // (undocumented)
     onAfterCreate({ binding }: BindingOnCreateOptions<TLArrowBinding>): void;
     // (undocumented)
@@ -1632,7 +1632,7 @@ export function GeoStylePickerSet({ styles }: StylePickerSetProps): JSX_2.Elemen
 export function getArrowBindings(editor: Editor, shape: TLArrowShape): TLArrowBindings;
 
 // @public (undocumented)
-export function getArrowInfo(editor: Editor, shape: TLArrowShape | TLShapeId): TLArrowInfo;
+export function getArrowInfo(editor: Editor, shape: TLArrowShape | TLShapeId): TLArrowInfo | undefined;
 
 // @public (undocumented)
 export function getArrowTerminalsInArrowSpace(editor: Editor, shape: TLArrowShape, bindings: TLArrowBindings): {

@@ -1,4 +1,3 @@
-import va from '@vercel/analytics'
 import posthog, { PostHogConfig, Properties } from 'posthog-js'
 import 'posthog-js/dist/web-vitals'
 import { useEffect } from 'react'
@@ -149,7 +148,6 @@ function getGA4() {
 }
 
 export function trackEvent(name: string, data?: { [key: string]: any }) {
-	va.track(name, data)
 	getPosthog()?.capture(name, data)
 	getGA4()?.event(name, data)
 }
@@ -181,10 +179,10 @@ function setupReo(options: AnalyticsOptions) {
 	const user = options.user
 	const reoIdentify = () =>
 		window.Reo?.identify?.({
-			name: user.name,
-			email: user.email,
+			firstname: user.name,
+			username: user.email,
+			type: 'email',
 			userId: user.id,
-			username: user.id,
 		})
 	if (!document.getElementById('reo-script-loader')) {
 		const reoId = '47839e47a5ed202'
